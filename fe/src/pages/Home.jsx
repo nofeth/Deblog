@@ -18,6 +18,31 @@ const Home = () => {
                     </div>
                 </article>
             </div>
+            <article className='flex gap-x-4 relative bottom-52'>
+            <div className="p-10 border font-playfair basis-1/2 ">
+                <p className="font-extrabold mb-4">7 Jan 2022</p>
+                <h1 className="text-xl">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae necessitatibus sint nulla, 
+                    voluptas at aperiam suscipit modi distinctio quaerat ad 
+                    aspernatur quo cumque deleniti adipisci ut, exercitationem consequuntur pariatur eveniet?
+                </h1>
+                <div className='flex items-center justify-between mt-20 flex-row'>
+                    <p className=" opacity-90 ">- ade oktaviano</p>
+                    <p className='mx-5 flex items-center'>Baca Selengkapnya<span className='ml-1'><IoArrowForwardSharp/></span></p>
+                </div>
+            </div>
+            <div className="p-10 border font-playfair basis-1/2 ">
+                <p className="font-extrabold mb-4">7 Jan 2022</p>
+                <h1 className="text-xl">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae necessitatibus sint nulla, 
+                    voluptas at aperiam suscipit modi distinctio quaerat ad 
+                    aspernatur quo cumque deleniti adipisci ut, exercitationem consequuntur pariatur eveniet?
+                </h1>
+                <div className='flex items-center justify-between mt-20 flex-row'>
+                    <p className=" opacity-90 ">- ade oktaviano</p>
+                    <p className='mx-5 flex items-center'>Baca Selengkapnya<span className='ml-1'><IoArrowForwardSharp/></span></p>
+                </div>
+            </div>
+
+            </article>
         </section>
 
         <section className="container my-10">
