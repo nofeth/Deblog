@@ -1,8 +1,8 @@
 import { Outlet, Route, Routes } from 'react-router-dom'
 import {About, Article, Category, Home} from './pages'
+import { AddArticle, AddCategory, Dashboard, Login } from './pages/admin'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Login from './pages/admin/Login'
 function App() {
   return (
     <>
@@ -13,8 +13,11 @@ function App() {
         <Route path="about" element={<About/>}/>
         <Route path="category" element={<Category/>}/>
       </Route>
-      <Route path="/admin" element={<Login/>}>
-        
+      <Route path="/login" element={<Login/>} />
+      <Route path='/admin' element={<LayoutAdmin/>}>
+        <Route index path='dashboard' element={<Dashboard/>}/>
+        <Route path='add-article' element={<AddArticle/>}/>
+        <Route path='dashboard' element={<AddCategory/>}/>
       </Route>
     </Routes>
     </>
@@ -29,6 +32,16 @@ function Layout() {
         <Outlet/>
       </main>
     <Footer/>
+    </>
+  )
+}
+
+function LayoutAdmin() {
+  return (
+    <>
+    <main>
+      <Outlet/>
+    </main>
     </>
   )
 }

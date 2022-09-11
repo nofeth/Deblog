@@ -8,7 +8,8 @@ module.exports = {
     extend: {
       fontFamily : {
         'playfair' : ['Playfair Display','serif'],
-        'combo' : ['Combo','cursive']
+        'combo' : ['Combo','cursive'],
+        'robot' : ['Roboto']
       }
     },
   },
