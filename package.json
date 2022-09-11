@@ -1,0 +1,19 @@
+{
+  "name": "deblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nofeth/Deblog.git"
+  },
+  "author": "nofeth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nofeth/Deblog/issues"
+  },
+  "homepage": "https://github.com/nofeth/Deblog#readme"
+}
