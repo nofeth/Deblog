@@ -5,7 +5,7 @@ import Chart from 'chart.js/auto'
 const Dashboard = () => {
     return (
         <>
-            <aside className="flex flex-col items-center pt-24 w-[300px] h-screen border gap-y-16">
+            <aside className="flex fixed flex-col items-center pt-24 w-[300px] h-screen border gap-y-16">
                 <div className="flex flex-col items-center gap-y-5 justify-center">
                     <img className="w-[100px] h-[100px] rounded-full shadow-lg border" src="" alt="" />
                     <h3>Ade</h3>
@@ -25,9 +25,9 @@ const Dashboard = () => {
                     </li>
                 </ul>
             </aside>
-            <section className="border w-full">
-                <h1>Dashboard</h1>
-                <div className="mx-auto max-w-[900px] w-full">
+            <section className="basis-1/2 mx-auto  ">
+                <h1 className="text-center my-10 ">Dashboard</h1>
+                <div className="mx-auto shadow-md p-5 max-w-[1000px] w-full">
                 <Line className="" data={{
                     labels : ['a','b','C','7 Jan','7 Jan','7 Jan','7 Jan'],
                     datasets: [{
@@ -42,8 +42,9 @@ const Dashboard = () => {
                     },]
                 }}/>
                 </div>
-                <div className="my-20 flex justify-evenly gap-x-36 mx-auto  w-full ">
-                <div className="w-1/4 ">
+                <div className="my-20 flex justify-evenly  mx-auto  w-full ">
+                <div className="w-1/2">
+                <h1 className="my-10 text-center">Populer</h1>
                 <Doughnut  data={{
                     labels : ['a','b','C','D'],
                     datasets: [{
@@ -53,9 +54,10 @@ const Dashboard = () => {
                     },]
                 }}/>
                 </div>
-                <div className="w-1/4">
+                <div className="w-1/2">
+                <h1 className="my-10 text-center">Kategori Popluer</h1>
                 <PolarArea className="" data={{
-                    labels : ['a'],
+                    labels : ['a','b','c','d'],
                     datasets: [{
                         data : [200,300,100,250],
                         backgroundColor : ['#1426EF','#000'],
