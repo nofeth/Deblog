@@ -9,7 +9,7 @@ module.exports = {
       fontFamily : {
         'playfair' : ['Playfair Display','serif'],
         'combo' : ['Combo','cursive'],
-        'robot' : ['Roboto']
+        'roboto' : ['Roboto','sans-serif']
       }
     },
   },

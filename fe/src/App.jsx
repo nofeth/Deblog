@@ -39,7 +39,7 @@ function Layout() {
 function LayoutAdmin() {
   return (
     <>
-    <main>
+    <main className='flex'>
       <Outlet/>
     </main>
     </>
