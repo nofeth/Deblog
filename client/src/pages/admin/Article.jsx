@@ -12,8 +12,8 @@ const ArticleAdmin = () => {
                     <thead>
                         <tr>
                             <th colSpan={5}>
-                                <div className='flex justify-between  items-center '>
-                                    <button className="px-3 py-2 hover:bg-[#395B64] font-medium hover:text-slate-50 hover:border-[#395B64] transition border-slate-300 my-2 border-[1px] shadow-md">Tambah Artikel</button>
+                                <div className='flex justify-between items-start my-2'>
+                                    <button className="px-3 py-2 hover:bg-[#395B64] font-medium hover:text-slate-50 hover:border-[#395B64] transition   border shadow-md">Tambah Artikel</button>
                                     <div className='flex text-2xl gap-x-5'>
                                         <button className='text-[rgb(0,0,0,.5)] hover:text-black transition p-2 rounded-full shadow-md'><MdModeEdit/></button>
                                         <button className='text-[rgb(0,0,0,.5)] hover:text-black transition p-2 rounded-full shadow-md'><MdDelete/></button>
@@ -21,29 +21,29 @@ const ArticleAdmin = () => {
                                 </div>
                             </th>
                         </tr>
-                        <tr className="text-left bg-[#A5C9CA] text-slate-50">
-                            <th className="px-2 py-2 w-[400px] border border-[#A5C9CA] ">Judul</th>
-                            <th className="px-2 py-2 w-[300px] border border-[#A5C9CA]">Artikel</th>
-                            <th className="px-2 py-2 w-[200px] border border-[#A5C9CA]">Tanggal Publish</th>
-                            <th className="px-2 py-2 h-3 overflow-x-hidden w-[200px] border border-[#A5C9CA]">Penulis</th>
-                            <th className="px-2 py-2 w-[100px] border border-[#A5C9CA]">View</th>
+                        <tr className="text-left bg-[#395B64] text-slate-50">
+                            <th className="px-2 py-2 w-[400px] border border-[#395B64] ">Judul</th>
+                            <th className="px-2 py-2 w-[300px] border border-[#395B64]">Artikel</th>
+                            <th className="px-2 py-2 w-[200px] border border-[#395B64]">Tanggal Publish</th>
+                            <th className="px-2 py-2 h-3 overflow-x-hidden w-[200px] border border-[#395B64]">Penulis</th>
+                            <th className="px-2 py-2 w-[100px] border border-[#395B64]">View</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="">
-                            <td className="px-2 h-1 border font-semibold border-[#A5C9CA]">ade</td>
-                            <td className="px-2 h-1 border border-[#A5C9CA]">Dimana Ada dimana</td>
-                            <td className="px-2 h-1 border text-slate-600 border-slate-300">08 Jan 2002</td>
-                            <td className="px-2 h-1 border border-[#A5C9CA]">ade Oktaasdasdasdasasdasdasdasdasdsdaasdasdasdasdsadasdasdassdviano Arrahman </td>
-                            <td className="px-2 h-1 text-center border border-[#A5C9CA]">243</td>
+                        <tr className="border">
+                            <td className="px-2 border font-semibold border-[#395B64]">ade</td>
+                            <td className="px-2 border border-[#395B64]">Dimana Ada dimana</td>
+                            <td className="px-2 border border-[#395B64]">08 Jan 2002</td>
+                            <td className="px-2 border border-[#395B64]">ade Oktaasdasdasdasasdasdasdasdasdsdaasdasdasdasdsadasdasdassdviano Arrahman </td>
+                            <td className="px-2 text-center border border-[#395B64]">243</td>
                         </tr>
                     </tbody>
                     </table>
                     <div  className='basis-[20%] '>
                         <div className='mx-3 border-t-[10px] border-[#395B64] p-5 shadow-lg rounded-lg'>
-                            <h3>Filter</h3>
+                            <h3 className='font-semibold font-roboto'>Filter</h3>
                             <form className='mt-5 flex flex-wrap gap-1'>
-                                <FilterButton type="checkbox" className="hover:bg-[#395B64] hover:border-[#395B64] transition p-2 border rounded-lg" text="drama" label="drama" unique="drama"/>
+                                <FilterButton type="checkbox" className="cursor-pointer hover:bg-[#395B64] hover:text-slate-50 hover:border-[#395B64] transition p-2 border rounded-lg" text="drama" label="drama" unique="drama"/>
                             </form>
                         </div>
 
