@@ -6,9 +6,9 @@ const Category = () => {
     return (
         <section className="container font-playfair">
             <TitleSection text="Category" style="my-10 text-center"/>
-            <article className="shadow-xl mx-10 rounded-xl xl:mx-auto max-w-[1000px] overflow-scroll h-[300px]">
+            <article className="shadow-xl mx-10 rounded-xl xl:mx-auto max-w-[1000px]  h-[300px]">
                 <form action="" className="flex m-5 flex-wrap gap-x-1 gap-y-1  ">
-                   <CardCategory/> 
+                   <CardCategory/>
                 </form>
             </article>
             <article>

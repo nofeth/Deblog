@@ -1,8 +1,8 @@
-const FilterButton = ({type,label,text,unique,className}) => {
+const FilterButton = ({type,id,text,name,className}) => {
   return (
     <>
-        <label htmlFor={label} className={`cursor-pointer ${className}`}>{text}</label>
-        <input type={type} hidden name={unique} id={label} />
+        <label htmlFor={id} className={`cursor-pointer ${className}`}>{text}</label>
+        <input type={type} hidden name={name} id={id} />
     </>
   )
 }
