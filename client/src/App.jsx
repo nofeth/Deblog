@@ -1,8 +1,10 @@
-import { Outlet, Route, Routes } from 'react-router-dom'
+import { Outlet, Route, Routes} from 'react-router-dom'
 import {About, Article, Category, Home} from './pages'
-import { AddArticle, AddCategory, Dashboard, Login } from './pages/admin'
+import LayoutAdmin from './Templates/LayoutAdmin'
+import { ArticleAdmin, CategoryAdmin, Dashboard, Login } from './pages/admin'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import NotFound from './pages/NotFound'
 function App() {
   return (
     <>
@@ -16,9 +18,10 @@ function App() {
       <Route path="/login" element={<Login/>} />
       <Route path='/admin' element={<LayoutAdmin/>}>
         <Route index path='dashboard' element={<Dashboard/>}/>
-        <Route path='add-article' element={<AddArticle/>}/>
-        <Route path='dashboard' element={<AddCategory/>}/>
+        <Route path='article' element={<ArticleAdmin/>}/>
+        <Route path='category' element={<CategoryAdmin/>}/>
       </Route>
+      <Route path="*" element={<NotFound/>}/>
     </Routes>
     </>
   )
@@ -32,16 +35,6 @@ function Layout() {
         <Outlet/>
       </main>
     <Footer/>
-    </>
-  )
-}
-
-function LayoutAdmin() {
-  return (
-    <>
-    <main className='flex'>
-      <Outlet/>
-    </main>
     </>
   )
 }
