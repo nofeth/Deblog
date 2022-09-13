@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom"
 import {Bar, Doughnut, Line, PolarArea} from 'react-chartjs-2'
 import Chart from 'chart.js/auto'
+import Navbar from "../../components/admin/Navbar"
 
 const Dashboard = () => {
     return (
         <>
             
             <section className="ml-[300px] mb-10 overflow-hidden flex-col w-full">
-                <div className="p-5 text-slate-50 font-semibold text-2xl font-roboto bg-[#395B64]">
-                    <h1>Dashboard</h1>
-                </div>
+                <Navbar children="Dashboard"/>
                 <div className=" mx-10 max-w-[1000px] w-full">
                 <div className="my-10">
                     <h1 className="text-center">Jumlah Pengunjung</h1>

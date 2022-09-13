@@ -1,6 +1,10 @@
+import Navbar from "../../components/admin/Navbar"
+
 const CategoryAdmin = () => {
     return (
-        <h1>AddCategory</h1>
+        <section className="ml-[300px] w-full">
+         <Navbar children="Kategori"/>
+        </section>
     )
 }
 

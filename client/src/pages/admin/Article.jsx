@@ -1,14 +1,14 @@
 import {MdDelete, MdModeEdit} from 'react-icons/md'
+import Navbar from '../../components/admin/Navbar'
+import FilterButton from '../../components/atoms/FilterButton'
 
 const ArticleAdmin = () => {
     return (
         <>
             <section className="ml-[300px] w-full ">
-                <div className="p-5 text-slate-50 font-semibold text-2xl font-roboto bg-[#395B64]">
-                    <h1>Artikel</h1>
-                </div>
-                <div className="ml-2 mt-20">
-                    <table class="table-fixed border-t-[10px] border-[#395B64] p-5 shadow-lg rounded-lg  border-separate border-spacing-0">
+                <Navbar children="Artikel" />
+                <div className="ml-3 mt-20 flex ">
+                    <table class="table-fixed border-t-[10px] basis-[80%] border-[#395B64] p-5 shadow-lg rounded-lg  border-separate border-spacing-0">
                     <thead>
                         <tr>
                             <th colSpan={5}>
@@ -39,6 +39,15 @@ const ArticleAdmin = () => {
                         </tr>
                     </tbody>
                     </table>
+                    <div  className='basis-[20%] '>
+                        <div className='mx-3 border-t-[10px] border-[#395B64] p-5 shadow-lg rounded-lg'>
+                            <h3>Filter</h3>
+                            <form className='mt-5 flex flex-wrap gap-1'>
+                                <FilterButton type="checkbox" className="hover:bg-[#395B64] hover:border-[#395B64] transition p-2 border rounded-lg" text="drama" label="drama" unique="drama"/>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
             </section>
         </>
