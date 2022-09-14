@@ -3,6 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing : border-box;
+.backdrops {
+  backdrop-filter: blur(5px); 
 }

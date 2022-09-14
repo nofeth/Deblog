@@ -1,11 +1,18 @@
 import {MdDelete, MdModeEdit} from 'react-icons/md'
+import CardArticle from '../../components/admin/CardArticle'
 import Navbar from '../../components/admin/Navbar'
 import FilterButton from '../../components/atoms/FilterButton'
 
 const ArticleAdmin = () => {
+
+    function handleCard () {
+
+    }
+
     return (
         <>
             <section className="ml-[300px] w-full ">
+                <CardArticle/>
                 <Navbar children="Artikel" />
                 <div className="ml-3 mt-20 flex ">
                     <table class="table-fixed border-t-[10px] basis-[80%] border-[#395B64] p-5 shadow-lg rounded-lg  border-separate border-spacing-0">
@@ -13,7 +20,7 @@ const ArticleAdmin = () => {
                         <tr>
                             <th colSpan={5}>
                                 <div className='flex justify-between items-start my-2'>
-                                    <button className="px-3 py-2 hover:bg-[#395B64] font-medium hover:text-slate-50 hover:border-[#395B64] transition   border shadow-md">Tambah Artikel</button>
+                                    <button onClick={handleCard} className="px-3 py-2 hover:bg-[#395B64] font-medium hover:text-slate-50 hover:border-[#395B64] transition   border shadow-md">Tambah Artikel</button>
                                     <div className='flex text-2xl gap-x-5'>
                                         <button className='text-[rgb(0,0,0,.5)] hover:text-black transition p-2 rounded-full shadow-md'><MdModeEdit/></button>
                                         <button className='text-[rgb(0,0,0,.5)] hover:text-black transition p-2 rounded-full shadow-md'><MdDelete/></button>
