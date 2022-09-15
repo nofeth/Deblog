@@ -11,7 +11,7 @@ export const Sidebar = () => {
             </div>
             <ul className="flex flex-col gap-y-10">
                 <li>
-                    <Link to="dashboard">Dashboard</Link>
+                    <Link to="/admin">Dashboard</Link>
                 </li>
                 <li>
                     <Link to="article">Artikel</Link>
