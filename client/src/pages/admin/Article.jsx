@@ -1,17 +1,25 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import {MdDelete, MdModeEdit} from 'react-icons/md'
 import CardArticle from '../../components/admin/CardArticle'
 import Navbar from '../../components/admin/Navbar'
 import FilterButton from '../../components/atoms/FilterButton'
 
-const ArticleAdmin = () => {
+ const ArticleAdmin = () => {
+    const [article,setArticle] = useState([])
     const [close,setClose] = useState(false) 
-    function closeCardArticle () {}
-
-    function handleCard () {
-
-    }
-
+    
+    useEffect(() => {
+        const data = fetch('http://127.0.0.1:3000/api/article/')
+        .then(e => {
+            console.log(e.body);
+        })
+    
+      return () => {
+        data
+      }
+    }, [])
+    
+    
     return (
         <>
         {
