@@ -1,14 +1,32 @@
-// export async function createArticle (){
-
-// }
+const ArticleSchema = require('../models/ArticleModels')
 
 
 function getAllArticle(req,res){
     try {
-        res.send({"nama" : 'ade'})
+        res.json({ade : 'json'})
     } catch (error) {
         console.log(error);
     }
 }
 
-module.exports = {getAllArticle}
+async function addArticle(req,res){
+   try {
+       await ArticleSchema.insertMany({
+           title : req.body.title,
+           content : req.body.content,
+       })
+       res.json({
+           status : 201,
+           msg : 'berhasil ditambah'
+       })
+    
+   } catch (error) {
+    res.json({
+        status : 404,
+        msg : 'gagal ditambahkan'
+    })
+   }
+}
+
+
+module.exports = {getAllArticle,addArticle}
