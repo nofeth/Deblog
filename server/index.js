@@ -10,6 +10,8 @@ mongoose
     .connect("mongodb://127.0.1:27017/blog")
     .then((e) => console.log('server Mongo berjalan'))
     .catch((err) => console.log('err'))
+
+    
 app.use(express.json())
 app.use(cors())
 app.use('/api/article',articleRoute)

@@ -1,9 +1,11 @@
 const ArticleSchema = require('../models/ArticleModels')
 
 
-function getAllArticle(req,res){
+async function getAllArticle(req,res){
     try {
-        res.json({ade : 'json'})
+       const datas = await ArticleSchema.find()
+       const data = res.json(datas)
+       console.log(data);
     } catch (error) {
         console.log(error);
     }

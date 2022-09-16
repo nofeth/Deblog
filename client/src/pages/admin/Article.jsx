@@ -3,18 +3,24 @@ import {MdDelete, MdModeEdit} from 'react-icons/md'
 import CardArticle from '../../components/admin/CardArticle'
 import Navbar from '../../components/admin/Navbar'
 import FilterButton from '../../components/atoms/FilterButton'
-
+import axios from 'axios'
+import api from '../../api/api'
  const ArticleAdmin = () => {
-    const [article,setArticle] = useState([])
+    const [data,setData] = useState([])
     const [close,setClose] = useState(false) 
-    
+    console.log(data);
     useEffect(() => {
-        const data = fetch('http://127.0.0.1:3000/api/article/')
-        .then(e => {
-            console.log(e.body);
+          const datas = async () => {
+            await axios.get(api).then(e => {
+                console.log(e);
+                const parser = JSON.parse(e.data)
+                setData(parser)
+        }).catch((err) => {
+            console.log(err);
         })
-    
-      return () => {
+    }
+        datas()
+    return () => {
         data
       }
     }, [])
@@ -53,13 +59,19 @@ import FilterButton from '../../components/atoms/FilterButton'
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="border">
-                            <td className="px-2 border font-semibold border-[#395B64]">ade</td>
-                            <td className="px-2 border border-[#395B64]">Dimana Ada dimana</td>
-                            <td className="px-2 border border-[#395B64]">08 Jan 2002</td>
-                            <td className="px-2 border border-[#395B64]">ade Oktaasdasdasdasasdasdasdasdasdsdaasdasdasdasdsadasdasdassdviano Arrahman </td>
-                            <td className="px-2 text-center border border-[#395B64]">243</td>
-                        </tr>
+                        {
+                            data.map(e => {
+                                return (
+                                <tr key={e._id} className="border">
+                                    <td className="px-2 border font-semibold border-[#395B64]">{e.title}</td>
+                                    <td className="px-2 border border-[#395B64]">{e.content}</td>
+                                    <td className="px-2 border border-[#395B64]">08 Jan 2002</td>
+                                    <td className="px-2 border border-[#395B64]">ade Oktaasdasdasdasasdasdasdasdasdsdaasdasdasdasdsadasdasdassdviano Arrahman </td>
+                                    <td className="px-2 text-center border border-[#395B64]">243</td>
+                                </tr>
+                                )
+                            })
+                        }
                     </tbody>
                     </table>
                     <div  className='basis-[20%] '>
