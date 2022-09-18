@@ -20,6 +20,7 @@ async function addArticle(req,res){
        await ArticleSchema.insertMany({
            title : req.body.title,
            content : req.body.content,
+           categories : req.body.categories
        })
        res.json({
            status : 201,
@@ -32,6 +33,7 @@ async function addArticle(req,res){
         msg : 'gagal ditambahkan'
     })
    }
+
 }
 
 

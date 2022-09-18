@@ -25,9 +25,10 @@ const CardArticle = ({setClose,getData}) => {
 
   async function handleForm(e) {
     e.preventDefault()
-    await axios.post(api,{
+    await axios.post(`${api}/article`,{
         title,content
     })
+    handleClose()
     getData()
   }
   return (

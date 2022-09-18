@@ -1,5 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const categoriesControllers = require('../controllers/categoriesControllers')
+const {addCategories,getAllCategories, deleteCategories} = require('../controllers/categoriesControllers')
 
-router.get('/',categoriesControllers)
+router.get('/',getAllCategories)
+
+router.post('/',addCategories)
+
+router.delete('/delete',deleteCategories)
+
+module.exports = router

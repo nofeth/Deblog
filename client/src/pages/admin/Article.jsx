@@ -10,9 +10,10 @@ import api from '../../api/api'
     const [close,setClose] = useState(false) 
 
     const getData = async () => {
-        const {data} = await axios.get(api)
+        const {data} = await axios.get(`${api}/article`)
         setData(JSON.parse(data.data))
     }
+
     useEffect(() => {
         getData()
 

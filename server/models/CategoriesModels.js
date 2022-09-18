@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 
 const CategoriesSchema = new mongoose.Schema({
-    'nama' : {type : String,required : true}
+    title : {type:String,required:true}
 })
 
-module.exports = mongoose.model('categories',CategoriesSchema)
+module.exports = mongoose.model('Categories',CategoriesSchema)

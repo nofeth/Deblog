@@ -1,3 +1,3 @@
-const url = "http://127.0.0.1:3000/api/article/"
+const url = "http://127.0.0.1:3000/api"
 
 export default url
