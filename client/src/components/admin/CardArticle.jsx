@@ -1,36 +1,16 @@
+import axios from 'axios'
 import { useEffect } from 'react'
 import { createRef } from 'react'
 import { useRef } from 'react'
 import { useState } from 'react'
 import {MdClear,MdExpandLess} from 'react-icons/md'
+import api from '../../api/api'
 
-const CardArticle = ({setClose,article,articleContent}) => {
+const CardArticle = ({setClose,getData}) => {
   const [dropdown,setDropdown] = useState(false)
   const [category,setCategory] = useState('')
   const [title,setTitle] = useState('')
   const [content,setContent] = useState('')
-  const [dataCategory,setDataCategory] = useState([{
-    id : 1,
-    nama : 'ade'
-},{
-    id : 2,
-    nama : 'diadamna'
-},{
-    id : 3,
-    nama : 'diaasdmna'
-},{
-    id : 4,
-    nama : 'diaasdsamna'
-}
-])
-
-useEffect(() => {
-
-  return () => {
-    
-  }
-}, [])
-
 
   function handleCategory(e){
     console.log(e.target.children[0].value);
@@ -43,9 +23,12 @@ useEffect(() => {
     setClose(false)
   }
 
-  function handleForm(e) {
+  async function handleForm(e) {
     e.preventDefault()
-    console.log(e);
+    await axios.post(api,{
+        title,content
+    })
+    getData()
   }
   return (
     <>
