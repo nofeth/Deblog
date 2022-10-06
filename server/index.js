@@ -14,16 +14,10 @@ mongoose
 
     
 app.use(express.json())
-app.use(express.urlencoded({extended : true}))
+// app.use(express.urlencoded({extended : true}))
 app.use(cors())
 app.use('/api/article',articleRoute)
 app.use('/api/categories',categoryRoute)
-
-
-
-// app.route('/').get((req,res) => {
-//     console.log('route');
-// })
 
 app.listen(3000, () => {
     console.log("Server Akitf");

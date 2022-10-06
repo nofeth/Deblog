@@ -7,28 +7,30 @@ const CategoryAdmin = () => {
     const [title,setTitle] = useState('')
     const [data,setData] = useState([])
     const [message,setMessage] = useState('')
-    console.log(message);
     async function handleForm(e){
         e.preventDefault()
         try {
             const data = await axios.post(`${api}/categories`,{title})
             getData()
-            setMessage(data.data.msg)
-            console.log(data.data);
             
         } catch (error) {
-            console.log('halo');
+            console.log("error");
         }
     }
 
     async function getData(){
-      const {data} = await axios.get(`${api}/categories`)
-      setData(data.data)
-    }
+        try {
+            const {data : {data}} = await axios.get(`${api}/categories`)
+            setData(JSON.parse(data))
+        } catch (error) {
+            console.log(error.message);
+        }
+        }
     useEffect(() => {
     getData()
       return () => {
-      }
+        getData()
+    }
     }, [])
     
     return (

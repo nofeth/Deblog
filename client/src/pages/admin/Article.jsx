@@ -8,15 +8,25 @@ import api from '../../api/api'
  const ArticleAdmin = () => {
     const [data,setData] = useState([])
     const [close,setClose] = useState(false) 
+    const [category,setCategory] = useState([])
+    async function getData() {
+        const {data : {data}} =  await axios.get(`${api}/article`)
+        setData(JSON.parse(data))
+    }
 
-    const getData = async () => {
-        const {data} = await axios.get(`${api}/article`)
-        setData(JSON.parse(data.data))
+    async function getDataCategory(){
+        const {data : {data}} = await axios.get(`${api}/categories`)
+        return JSON.parse(data);
+    }
+    
+    async function getCategory() {
+        const data = await getDataCategory()
+        setCategory(data)
     }
 
     useEffect(() => {
         getData()
-
+        getCategory()
     }, [])
     
     
@@ -24,7 +34,7 @@ import api from '../../api/api'
         <>
         {
             close ? 
-            <CardArticle setClose={(e) => setClose(e)} getData={getData}/>
+            <CardArticle setClose={(e) => setClose(e)} getData={getData} getDataCategory={getDataCategory}/>
             :
             ''
         }
@@ -72,7 +82,11 @@ import api from '../../api/api'
                         <div className='mx-3 border-t-[10px] border-[#395B64] p-5 shadow-lg rounded-lg'>
                             <h3 className='font-semibold font-roboto'>Filter</h3>
                             <form className='mt-5 flex flex-wrap gap-1'>
-                                <FilterButton type="checkbox" className="cursor-pointer hover:bg-[#395B64] hover:text-slate-50 hover:border-[#395B64] transition p-2 border rounded-lg" text="drama" label="drama" unique="drama"/>
+                                {
+                                    category.map((e) => {
+                                       return  <FilterButton key={e._id} type="checkbox" className="cursor-pointer hover:bg-[#395B64] hover:text-slate-50 hover:border-[#395B64] transition p-2 border rounded-lg" text={e.title} label={e.title} unique={e.title}/>
+                                    })
+                                }
                             </form>
                         </div>
 

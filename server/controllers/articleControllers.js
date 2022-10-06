@@ -3,15 +3,16 @@ const ArticleSchema = require('../models/ArticleModels')
 
 async function getAllArticle(req,res){
     try {
-       const datas = await ArticleSchema.find()
-       console.log(datas);
-       res.json(
+       const data = await ArticleSchema.find()
+    res.json(
         {   
-            msg : 'berhasil',
-            data : JSON.stringify(datas)
+            msg : 'Berhasil Menampilkan Data Artikel',
+            data : JSON.stringify(data)
         })
     } catch (error) {
-        console.log(error);
+        res.status(404).json({
+            error : error.message
+        })
     }
 }
 

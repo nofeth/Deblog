@@ -1,20 +1,17 @@
 import axios from 'axios'
 import { useEffect } from 'react'
-import { createRef } from 'react'
-import { useRef } from 'react'
 import { useState } from 'react'
 import {MdClear,MdExpandLess} from 'react-icons/md'
 import api from '../../api/api'
 
-const CardArticle = ({setClose,getData}) => {
+const CardArticle = ({setClose,getData,getDataCategory}) => {
   const [dropdown,setDropdown] = useState(false)
-  const [category,setCategory] = useState('')
+  const [category,setCategory] = useState([])
   const [title,setTitle] = useState('')
   const [content,setContent] = useState('')
-
+  const [categorySelect,setCategorySelect] = useState('')
   function handleCategory(e){
-    console.log(e.target.children[0].value);
-    setCategory(e.target.children[0].value)
+    setCategorySelect(e)
     setDropdown(false)
   }
 
@@ -31,6 +28,19 @@ const CardArticle = ({setClose,getData}) => {
     handleClose()
     getData()
   }
+  const dataCategory = async () => {
+      const data = await getDataCategory()
+      setCategory(data)
+      setCategorySelect(data[0].title || "Tidak ada Kategori")
+    }
+
+  useEffect(() => {
+    dataCategory()
+    return () => {
+    }
+  }, [])
+  
+
   return (
     <>
         <div className="top-0 flex bg-opacity-20 justify-center items-center left-0 absolute bg-black w-full min-h-screen">
@@ -49,17 +59,17 @@ const CardArticle = ({setClose,getData}) => {
                         <label htmlFor="kategori">Kategori</label>
                         <div className='w-full relative z-10 cursor-pointer '>
                             <div onClick={() => setDropdown(dropdown ? false : true)} className='w-full p-5 items-center flex justify-between bg-slate-200'>
-                                {category}
+                                {categorySelect}
                                 <span className={`${dropdown ? 'rotate-0' : 'rotate-180'} transition text-2xl`}><MdExpandLess/></span>
                             </div>
-                            <ul className={'max-h-[200px] overflow-scroll absolute w-full  bg-white  z-10'}>
+                            <ul className={'max-h-[200px] overflow-y-scroll absolute w-full  bg-white  z-10'}>
                             {
                                 (dropdown) ?
-                                dataCategory.map((e) => {
+                                category.map((e,i) => {
                                 return (
-                                <li key={e.id} onClick={(e) => handleCategory(e)} className='p-5 hover:bg-slate-200' data-value="ink">
-                                    {e.nama}
-                                    <input type="text" hidden name={e.nama} value={e.nama} readOnly/>
+                                <li key={i} onClick={() => handleCategory(e.title)} className='p-5 hover:bg-slate-200' data-value="ink">
+                                    {e.title}
+                                    <input type="text" hidden name={e.title} value={e.title} readOnly/>
                                 </li>)
                                 })
                                 :
