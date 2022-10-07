@@ -21,6 +21,7 @@ async function addArticle(req,res){
        await ArticleSchema.insertMany({
            title : req.body.title,
            content : req.body.content,
+           view : req.body.view,
            categories : req.body.categories
        })
        res.json({

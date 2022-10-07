@@ -58,8 +58,8 @@ import api from '../../api/api'
                             <th className="px-2 py-2 border border-[#395B64] ">Judul</th>
                             <th className="px-2 py-2 border border-[#395B64]">Artikel</th>
                             <th className="px-2 py-2 border border-[#395B64]">Tanggal Publish</th>
-                            <th className="px-2 py-2 h-3  border border-[#395B64]">Penulis</th>
-                            <th className="px-2 py-2  border border-[#395B64]">View</th>
+                            <th className="px-2 py-2 border border-[#395B64]">Penulis</th>
+                            <th className="px-2 py-2 border border-[#395B64]">View</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,7 +70,7 @@ import api from '../../api/api'
                                     <td className="px-2 border font-semibold border-[#395B64]">{e.title}</td>
                                     <td className="px-2 border border-[#395B64]">{e.content}</td>
                                     <td className="px-2 border border-[#395B64]">08 Jan 2002</td>
-                                    <td className="px-2 w-[100px] overflow-hidden border border-[#395B64]">ade Okasdasdasdsaasdasasdsataasdasdasdasasdasdasdasdasdsdaasdasdasdasdsadasdasdassdviano Arrahman </td>
+                                    <td className="px-2 overflow-hidden border border-[#395B64]">{e.author || '-'}</td>
                                     <td className="px-2 text-center border border-[#395B64]">243</td>
                                 </tr>
                                 )

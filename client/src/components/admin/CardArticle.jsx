@@ -6,14 +6,20 @@ import api from '../../api/api'
 
 const CardArticle = ({setClose,getData,getDataCategory}) => {
   const [dropdown,setDropdown] = useState(false)
-  const [category,setCategory] = useState([])
+  const [category,setCategory] = useState([{title : 'Belum Ada Kategori'}])
   const [title,setTitle] = useState('')
   const [content,setContent] = useState('')
-  const [categorySelect,setCategorySelect] = useState('')
-  function handleCategory(e){
-    setCategorySelect(e)
-    setDropdown(false)
+  const [select,setSelect] = useState(false)
+  const [categorySelect,setCategorySelect] = useState([])
+  function handleCategory(title){
+    const filter = categorySelect.filter((e) => e === title)
+    if (filter.length === 1) {
+      return true
+    }
+    setSelect(true)
+    setCategorySelect([...categorySelect,title])
   }
+
 
   function handleClose(){
     setDropdown(false)
@@ -23,7 +29,7 @@ const CardArticle = ({setClose,getData,getDataCategory}) => {
   async function handleForm(e) {
     e.preventDefault()
     await axios.post(`${api}/article`,{
-        title,content
+        title,content,view : 0,categories : categorySelect
     })
     handleClose()
     getData()
@@ -31,10 +37,9 @@ const CardArticle = ({setClose,getData,getDataCategory}) => {
   const dataCategory = async () => {
       const data = await getDataCategory()
       setCategory(data)
-      setCategorySelect(data[0].title || "Tidak ada Kategori")
     }
 
-  useEffect(() => {
+    useEffect(() => {
     dataCategory()
     return () => {
     }
@@ -59,7 +64,16 @@ const CardArticle = ({setClose,getData,getDataCategory}) => {
                         <label htmlFor="kategori">Kategori</label>
                         <div className='w-full relative z-10 cursor-pointer '>
                             <div onClick={() => setDropdown(dropdown ? false : true)} className='w-full p-5 items-center flex justify-between bg-slate-200'>
-                                {categorySelect}
+                                <div>
+                                  {
+                                    (!select) ? 
+                                      category[0].title
+                                    :
+                                    categorySelect.map(e => {
+                                      return <span className='mr-1'>{e}</span>
+                                    })  
+                                  }
+                                </div>
                                 <span className={`${dropdown ? 'rotate-0' : 'rotate-180'} transition text-2xl`}><MdExpandLess/></span>
                             </div>
                             <ul className={'max-h-[200px] overflow-y-scroll absolute w-full  bg-white  z-10'}>

@@ -3,21 +3,35 @@ import Navbar from "../../components/admin/Navbar"
 import { MdModeEdit,MdDelete } from "react-icons/md"
 import api from '../../api/api'
 import axios from "axios"
+import FormCategory from "../../components/admin/FormCategory"
 const CategoryAdmin = () => {
     const [title,setTitle] = useState('')
     const [data,setData] = useState([])
     const [message,setMessage] = useState('')
+    const [editSelected,setEditSelected] = useState([])
     async function handleForm(e){
         e.preventDefault()
         try {
             const data = await axios.post(`${api}/categories`,{title})
             getData()
+            setTitle('')
             
         } catch (error) {
             console.log("error");
         }
     }
 
+    function handleFormEdit(element){
+        
+       const filter = editSelected.includes(element) // false
+       if (!filter) {
+           setEditSelected([...editSelected,element])
+           return
+        }
+        const remove = editSelected.filter(e => e !== element)
+        setEditSelected(remove)
+        return 
+   }
     async function getData(){
         try {
             const {data : {data}} = await axios.get(`${api}/categories`)
@@ -39,35 +53,25 @@ const CategoryAdmin = () => {
          <div className="flex min-h-[300px] mt-20 gap-x-5 mx-5">
             <div className=" border-t-[10px] basis-full border-[#395B64] p-5 shadow-lg rounded-lg">
             <div className='flex text-2xl mb-5 mx-5 justify-end items-center gap-x-5'>
-                <button className='text-[rgb(0,0,0,.5)] hover:text-black transition p-2 rounded-full shadow-md'><MdModeEdit/></button>
-                <button className='text-[rgb(0,0,0,.5)] hover:text-black transition p-2 rounded-full shadow-md'><MdDelete/></button>
+                <button className={`${editSelected.length > 0 ? 'text-[rgb(0,0,0,1)]' : 'text-[rgb(0,0,0,.5)]'} hover:text-black transition p-2 rounded-full shadow-md`}><MdModeEdit/></button>
+                <button onClick={handleFormEdit} className={`${editSelected.length > 0 ? 'text-[rgb(0,0,0,1)]' : 'text-[rgb(0,0,0,.5)]'} text-[rgb(0,0,0,.5)] hover:text-black transition p-2 rounded-full shadow-md`}><MdDelete/></button>
             </div>
                 <article className="max-h-[500px] overflow-y-scroll flex gap-1 items-start flex-wrap justify-start">
                     {
                         data.map(e => {
                             return (
-                                <span key={e._id} className="cursor-pointer hover:bg-[#395B64] hover:text-slate-50 hover:border-[#395B64] transition p-2 border rounded-lg">{e.title}</span>
+                                <span key={e._id} onClick={() => handleFormEdit(e.title)} className={`${editSelected.includes(e.title) ? 'bg-[#395B64] border-[#395B64] text-slate-50' : 'bg-white'} cursor-pointer hover:bg-[#395B64] hover:text-slate-50 hover:border-[#395B64] transition p-2 border rounded-lg`}>{e.title}</span>
                             )
                         })
                     }
                 </article>
             </div>
-                <article className="relative border-t-[10px] h-[250px] basis-1/3  border-[#395B64] p-5 shadow-lg rounded-lg">
-                    <h3 className="absolute top-2 font-semibold font-roboto">Tambah Kategori</h3>
-                    <form onSubmit={handleForm} className="w-full flex flex-col justify-between h-full">
-                        <div className="my-4 ">
-                            <label htmlFor="kategori">Nama Kategori</label>
-                            <input onChange={(e) => setTitle(e.target.value)} className={`${message ? 'ring-1 ring-red-600 border-none' : ''} my-2 w-full px-3 py-2 outline-none  focus:ring-1 focus:ring-black  border`} id="kategori" type="text" value={title}/>
-
-                            {
-                                message ? 
-                                <small className="text-red-600 -mt-2 block">{message}</small>
-                                : ''
-                            }
-                        </div>
-                        <button type="submit" className="px-3 mx-11 py-2 hover:bg-[#395B64]  font-medium rounded-lg hover:text-slate-50 hover:border-[#395B64] transition   border shadow-md">Tambah</button>
-                    </form>
-                </article>
+            <div className=" basis-1/3 ">
+                {
+                    <FormCategory title={title} setTitle={(e) => setTitle(e.target.value)} message={message} handleForm={handleForm}/>
+                }
+            </div>
+                
             </div>
         </section>
     )
