@@ -6,6 +6,6 @@ router.get('/',getAllCategories)
 
 router.post('/',addCategories)
 
-router.delete('/delete',deleteCategories)
+router.delete('/',deleteCategories)
 
 module.exports = router
