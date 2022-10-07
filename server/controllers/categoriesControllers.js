@@ -37,8 +37,9 @@ async function addCategories(req,res){
 }
 
 async function deleteCategories(req,res){
+    const data = req.body.data.map(e => e.id)
     await CategoriesSchema.deleteMany({
-        _id : req.body._id
+        _id : data
     })
     res.json({
         msg : 'Kategori berhasil dihapus'
