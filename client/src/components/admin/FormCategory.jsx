@@ -1,7 +1,8 @@
 import React from 'react'
 
 const FormCategory = ({handleForm,title,setTitle,message}) => {
-  return (
+  const [title,setTitle] = useState('')
+    return (
     <>
     <article className="mb-5 relative border-t-[10px] h-[250px] border-[#395B64] p-5 shadow-lg rounded-lg">
                 <h3 className="absolute top-2 font-semibold font-roboto">Tambah Kategori</h3>
