@@ -10,16 +10,25 @@ const CategoryAdmin = () => {
     const [message,setMessage] = useState('')
     const [edit,setEdit] = useState(false)
     const [editSelected,setEditSelected] = useState([])
-    async function handleForm(e){
+    async function handleForm(e,title,id){
         e.preventDefault()
         try {
-            const data = await axios.post(`${api}/categories`,{title})
+            if (edit) {
+                await axios.put(`${api}/categories`,{id,title})
+            }else{
+                await axios.post(`${api}/categories`,{title})
+            }
             getData()
+            setEditSelected
             setTitle('')
             
-        } catch ({response : {data}}) {
-            console.log(data);
+        } catch (error) {
+            console.log(error);
         }
+    }
+
+    function handleEdit(){
+        setEdit(true)
     }
 
     async function handleFormDelete(){
@@ -34,10 +43,9 @@ const CategoryAdmin = () => {
     }
 
     function handleFormEdit({ _id : id = 0,title = 0}){
-           const filter = editSelected.map(e => e.title).includes(title) // false
+           const filter = editSelected.map(e => e.title).includes(title)
            if (!filter) {
                setEditSelected([...editSelected,{id,title}])
-               setEdit(true)
                return
             }  
             const remove = editSelected.filter(e => e.title !== title)
@@ -65,7 +73,7 @@ const CategoryAdmin = () => {
          <div className="flex min-h-[300px] mt-20 gap-x-5 mx-5">
             <div className=" border-t-[10px] basis-full border-[#395B64] p-5 shadow-lg rounded-lg">
             <div className='flex text-2xl mb-5 mx-5 justify-end items-center gap-x-5'>
-                <button className={`${editSelected.length > 0 ? 'text-[rgb(0,0,0,1)]' : 'text-[rgb(0,0,0,.5)]'} hover:text-black transition p-2 rounded-full shadow-md`}><MdModeEdit/></button>
+                <button onClick={handleEdit} className={`${editSelected.length > 0 ? 'text-[rgb(0,0,0,1)]' : 'text-[rgb(0,0,0,.5)]'} hover:text-black transition p-2 rounded-full shadow-md`}><MdModeEdit/></button>
                 <button onClick={handleFormDelete} className={`${editSelected.length > 0 ? 'text-[rgb(0,0,0,1)]' : 'text-[rgb(0,0,0,.5)]'} text-[rgb(0,0,0,.5)] hover:text-black transition p-2 rounded-full shadow-md`}><MdDelete/></button>
             </div>
                 <article className="max-h-[500px] overflow-y-scroll flex gap-1 items-start flex-wrap justify-start">
@@ -80,12 +88,12 @@ const CategoryAdmin = () => {
             </div>
             <div className=" basis-1/3 ">
                 {
-                    (editSelected.length > 0) ?
+                    (editSelected.length > 0 && edit) ?
                     editSelected.map(e => {
-                        return <FormCategory title={title} setTitle={(e) => setTitle(e.target.value)} message={message} handleForm={handleForm}/>
+                        return <FormCategory key={e.id} id={e.id} category={e.title} message={message} handleForm={handleForm} text={"Ubah"}/>
                     })
                     :
-                    <FormCategory title={title} setTitle={(e) => setTitle(e.target.value)} message={message} handleForm={handleForm}/>
+                    <FormCategory titles={title} setTitle={(e) => setTitle(e.target.value)} message={message} handleForm={handleForm} text={"Tambah"}/>
 
                 }
             </div>

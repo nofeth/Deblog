@@ -11,6 +11,7 @@ const CardArticle = ({setClose,getData,getDataCategory}) => {
   const [content,setContent] = useState('')
   const [select,setSelect] = useState(false)
   const [categorySelect,setCategorySelect] = useState([])
+
   function handleCategory(title){
     const filter = categorySelect.filter((e) => e === title)
     if (filter.length === 1) {

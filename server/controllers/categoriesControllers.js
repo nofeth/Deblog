@@ -36,6 +36,25 @@ async function addCategories(req,res){
 
 }
 
+async function editCategories(req,res){
+    try {
+        await CategoriesSchema.updateMany({
+            _id : req.body.id
+        },{
+            $set: {
+                title : req.body.title
+            }
+        })
+        res.status(201).json({
+            msg : "Berhasil"
+        })
+    } catch (error) {
+        res.status(404).json({
+            msg : "Tidak Ditemukan"
+        })
+    }
+}
+
 async function deleteCategories(req,res){
     const data = req.body.data.map(e => e.id)
     await CategoriesSchema.deleteMany({
@@ -46,4 +65,4 @@ async function deleteCategories(req,res){
     })
 }
 
-module.exports = {getAllCategories,addCategories,deleteCategories}
+module.exports = {getAllCategories,addCategories,editCategories,deleteCategories}
