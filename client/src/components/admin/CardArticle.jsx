@@ -65,19 +65,19 @@ const CardArticle = ({setClose,getData,getDataCategory}) => {
                         <label htmlFor="kategori">Kategori</label>
                         <div className='w-full relative z-10 cursor-pointer '>
                             <div onClick={() => setDropdown(dropdown ? false : true)} className='w-full p-5 items-center flex justify-between bg-slate-200'>
-                                <div>
+                                <div className='overflow-x-scroll overflow-y-hidden border w-full flex items-center border-black'>
                                   {
                                     (!select) ? 
                                       category[0].title
                                     :
                                     categorySelect.map(e => {
-                                      return <span className='mr-1'>{e}</span>
+                                      return <div className='mr-1 border border-black'>{e}</div>
                                     })  
                                   }
                                 </div>
                                 <span className={`${dropdown ? 'rotate-0' : 'rotate-180'} transition text-2xl`}><MdExpandLess/></span>
                             </div>
-                            <ul className={'max-h-[200px] overflow-y-scroll absolute w-full  bg-white  z-10'}>
+                            <ul className={'max-h-[200px] overflow-y-scroll  absolute w-full  bg-white  z-10'}>
                             {
                                 (dropdown) ?
                                 category.map((e,i) => {

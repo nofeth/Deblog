@@ -4,6 +4,7 @@ import { MdModeEdit,MdDelete } from "react-icons/md"
 import api from '../../api/api'
 import axios from "axios"
 import FormCategory from "../../components/admin/FormCategory"
+import CardCategory from "../../components/atoms/CardCategory"
 const CategoryAdmin = () => {
     const [title,setTitle] = useState('')
     const [data,setData] = useState([])
@@ -12,14 +13,15 @@ const CategoryAdmin = () => {
     const [editSelected,setEditSelected] = useState([])
     async function handleForm(e,title,id){
         e.preventDefault()
+        const data = editSelected.filter(e => e.id !== id )
         try {
             if (edit) {
                 await axios.put(`${api}/categories`,{id,title})
+                setEditSelected(data)
             }else{
                 await axios.post(`${api}/categories`,{title})
             }
             getData()
-            setEditSelected
             setTitle('')
             
         } catch (error) {
@@ -42,7 +44,7 @@ const CategoryAdmin = () => {
         }
     }
 
-    function handleFormEdit({ _id : id = 0,title = 0}){
+    function handleFormEdit({ _id : id = 0,title = ""}){
            const filter = editSelected.map(e => e.title).includes(title)
            if (!filter) {
                setEditSelected([...editSelected,{id,title}])
@@ -80,7 +82,10 @@ const CategoryAdmin = () => {
                     {
                         data.map(e => {
                             return (
+                                <>
+                                <CardCategory/>
                                 <span key={e._id} onClick={() => handleFormEdit(e)} className={`${editSelected.map(e => e.title).includes(e.title) ? 'bg-[#395B64] border-[#395B64] text-slate-50' : 'bg-white'} cursor-pointer hover:bg-[#395B64] hover:text-slate-50 hover:border-[#395B64] transition p-2 border rounded-lg`}>{e.title}</span>
+                                </>
                             )
                         })
                     }

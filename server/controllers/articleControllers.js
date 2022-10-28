@@ -22,7 +22,8 @@ async function addArticle(req,res){
            title : req.body.title,
            content : req.body.content,
            view : req.body.view,
-           categories : req.body.categories
+           categories : req.body.categories,
+           publish_date : new Date()
        })
        res.json({
            status : 201,
