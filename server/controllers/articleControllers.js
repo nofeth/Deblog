@@ -39,5 +39,19 @@ async function addArticle(req,res){
 
 }
 
+async function detailArticle(req,res){
+    const id = req.params.id
+    try {
+        const data = await ArticleSchema.find({
+            _id : id
+        })
+        res.json(data)
+    } catch (error) {
+        res.status(404)
+        res.json({
+            message : "Tidak Ditemukan"
+        })
+    }
+}
 
-module.exports = {getAllArticle,addArticle}
+module.exports = {getAllArticle,addArticle, detailArticle}
