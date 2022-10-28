@@ -1,7 +1,26 @@
+import axios from 'axios'
+import { useState,useEffect } from 'react'
 import TitleSection from '../components/atoms/TitleSection'
-import CardContent from '../components/CardsContent'
-
+import CardContent from '../components/CardContent'
+import api from '../api/api'
 const Home = () => {
+
+    const [data,setData] = useState([])
+
+    async function getData(){
+        try {
+            const {data : {data}} = await axios.get(`${api}/article`)
+            setData(JSON.parse(data))
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    useEffect(() => {
+      getData()
+    }, [])
+    
+
     return (
         <>
         <section className="container font-playfair">
@@ -19,9 +38,10 @@ const Home = () => {
                     </div>
                 </article>
             </div>
-            <article className='flex flex-wrap lg:flex-nowrap gap-x-4 gap-y-2 mx-3 lg:mx-0 lg:gap-y-0 relative bottom-52'>
-                <CardContent/>
-                <CardContent/>
+            <article className='flex flex-wrap  mx-3 lg:mx-0 lg:gap-y-0 relative bottom-52'>
+                {data.map(e => {
+                    return <CardContent key={e._id} author={e.author} content={e.content} date={e.date} links={e._id}/>
+                })}
             </article>
         </section>
 
